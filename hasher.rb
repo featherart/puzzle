@@ -22,12 +22,6 @@ file = open("movies.json")
 json = file.read
 parsed = JSON.parse(json)
 
-# (0...parsed.length).each do |i|
-#   puts parsed[i]['title']
-# end
-
-puts '\n'
-
 file_two = open("videos.json")
 json_two = file_two.read
 parsed_two = JSON.parse(json_two)
@@ -37,9 +31,10 @@ mismatch = []
 counter = 0
 parsed_two.each do |video|
   parsed.each do |movie|
-    
-    if(video['title'] == movie['title'])
-      puts "match " + video['title']
+    a_video = video['title'].upcase.strip
+    a_movie = movie['title'].upcase.strip
+    if(a_video == a_movie )
+      puts "match " + a_video
       counter += 1
       puts counter.to_s
     else
@@ -50,6 +45,8 @@ parsed_two.each do |video|
 end
 
 mismatch = mismatch.uniq!
+puts "\n"
+puts "mismatches: " + mismatch.length.to_s
 mismatch.each do |i|
-  puts i
+  p i
 end
